@@ -100,4 +100,35 @@ const intervalId = setInterval(() => {
       element.parentElement.remove();
     }
   }
+  /* Videos - Part */
+  let videoSection = document.querySelector("div[data-testid='zci-videos']");
+  if (videoSection) {
+    videoSection = videoSection.querySelector("ol");
+
+    // Durchlaufe alle children von videoSection (ol)
+    Array.from(videoSection.children).forEach((child) => {
+      // Überprüfe, ob das child ein img-Element enthält
+      const imgElement = child.querySelector("img");
+      if (imgElement) {
+        // Gehe zwei Ebenen nach oben zum parentElement und entferne es
+        const parentToRemove = imgElement.parentElement;
+        parentToRemove.style.display = "none";
+      }
+      // Überprüfe, ob das child ein article-Element enthält
+      const articleElement = child.querySelector("article");
+      if (articleElement) {
+        // Gehe ins zweite children Element des article
+        const secondChild = articleElement.children[2]; // Zweites child des article
+
+        // Überprüfe, ob das zweite child weitere 2 children hat
+        if (secondChild && secondChild.children.length >= 2) {
+          // Das zweite child des zweiten child-Elements wird ausgeblendet
+          const secondGrandChild = secondChild.children[1]; // Das zweite child des secondChild
+          if (secondGrandChild) {
+            secondGrandChild.style.display = "none"; // Ausblenden des zweiten child
+          }
+        }
+      }
+    });
+  }
 }, 1000);
