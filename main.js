@@ -100,6 +100,11 @@ const intervalId = setInterval(() => {
       element.parentElement.remove();
     }
   }
+  /* Footer removal */
+  const footer = document.querySelector("div.footer");
+  if (footer) {
+    footer.remove();
+  }
   /* Videos - Part */
   let videoSection = document.querySelector("div[data-testid='zci-videos']");
   if (videoSection) {
